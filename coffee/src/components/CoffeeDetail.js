@@ -7,7 +7,9 @@ function CoffeeDetail(props){
   return (
     <React.Fragment>
       <h1>Coffee Detail</h1>
-      <h3>{coffee.name} - Quantity:{coffee.quantity}</h3>
+      <h3>{coffee.name} - ${coffee.price}</h3>
+      <h3>Roast: {coffee.roast}</h3>
+      <h3>Quantity: {coffee.quantity}</h3>
       <p>{coffee.description}</p>
       <button onClick={ props.onClickEdit }>Update Coffee</button>
       <button onClick={() => props.onClickingDelete(coffee.id) }>Close Coffee</button>

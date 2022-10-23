@@ -9,6 +9,7 @@ function CoffeeList(props){
       <Coffee
         whenCoffeeClicked = { props.onCoffeeSelection }
         name={coffee.name}
+        roast={coffee.roast}
         quantity={coffee.quantity}
         description={coffee.description}
         id={coffee.id}

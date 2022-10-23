@@ -1,5 +1,5 @@
 import React from "react"; 
-import ReusableForm from "./ReusableForm"; 
+import NewCoffeeForm from "./NewCoffeeForm"; 
 import CoffeeList from "./CoffeeList"; 
 import CoffeeDetail from "./CoffeeDetail"; 
 import EditCoffeeForm from "./EditCoffeeForm"; 
@@ -21,12 +21,18 @@ class CoffeeControl extends React.Component {
     this.setState({selectedCoffee: selectedCoffee}); 
   }
 
+  handleAddingNewCoffeeToList = (newCoffee) => {
+    const newMainCoffeeList = this.state.mainCoffeeList.concat(newCoffee); 
+    this.setState({mainCoffeeList: newMainCoffeeList, 
+                  formVisibleOnPage: false});
+  }
+
   handleClick = () => {
     if (this.state.selectedCoffee != null) {
       this.setState({
         formVisibleOnPage: false, 
         selectedCoffee: null, 
-        editing: false
+        editing: false,
       }); 
     } else {
       this.setState(prevState => ({
@@ -68,9 +74,9 @@ class CoffeeControl extends React.Component {
     } else if (this.state.selectedCoffee != null) {
       currentlyVisibleState = <CoffeeDetail coffee = {this.state.selectedCoffee} onClickingDelete = {this.handleDeletingCoffee} onClickingEdit = {this.handleEditClick} />
       buttonText = "Return to Coffee List"; 
-    } else if (this.state.formVsibleOnPage) {
-      currentlyVisibleState = <ReusableForm onNewCoffeeCreation={this.handleAddingNewCoffeeToList} />; 
-      buttonText= "return to Coffee List"; 
+    } else if (this.state.formVisibleOnPage) {
+      currentlyVisibleState = <NewCoffeeForm onNewCoffeeCreation={this.handleAddingNewCoffeeToList} />; 
+      buttonText= "Return to Coffee List"; 
     } else {
       currentlyVisibleState = <CoffeeList coffeeList={this.state.mainCoffeeList} onCoffeeSelection={this.handleChangingSelectedCoffee} />; 
       buttonText = "add Coffee"; 
