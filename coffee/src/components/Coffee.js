@@ -10,6 +10,9 @@ function Coffee(props){
         <h3>Quantity: {props.quantity}</h3>
         <p>{props.description}</p>
       </div>
+      <button onClick={() => props.whenSellCoffeeClicked(props.id)} disabled={!props.quantity}>
+        {(props.quantity) ? 'Sell Coffee' : 'Sold Out'}
+      </button>
     </React.Fragment>
   ); 
 }

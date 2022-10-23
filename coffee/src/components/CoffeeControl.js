@@ -64,6 +64,18 @@ class CoffeeControl extends React.Component {
     }); 
   }
 
+  handleSellingCoffee(id) {
+    const coffeeSelection = mainCoffeeList.filter(coffee => coffee.id === id)[0];
+    const coffeeLeft = mainCoffeeList.filter(coffee => coffee.id !== coffeeSelection); 
+    coffeeSelection.quantity = coffeeSelection.quantity - 1; 
+    const newMainCoffeeList = coffeeLeft; 
+    this.setState({
+      mainCoffeeList: newMainCoffeeList,
+      editing: false, 
+      selectedCoffee: null
+    });
+  }
+
   render(){
     let currentlyVisibleState = null; 
     let buttonText = null; 
@@ -78,7 +90,10 @@ class CoffeeControl extends React.Component {
       currentlyVisibleState = <NewCoffeeForm onNewCoffeeCreation={this.handleAddingNewCoffeeToList} />; 
       buttonText= "Return to Coffee List"; 
     } else {
-      currentlyVisibleState = <CoffeeList coffeeList={this.state.mainCoffeeList} onCoffeeSelection={this.handleChangingSelectedCoffee} />; 
+      currentlyVisibleState = <CoffeeList 
+        coffeeList={this.state.mainCoffeeList} 
+        onCoffeeSelection={this.handleChangingSelectedCoffee}
+        onClickingSellCoffee={handleSellingCoffee} />; 
       buttonText = "add Coffee"; 
     }
     return(
