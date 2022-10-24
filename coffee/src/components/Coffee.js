@@ -10,9 +10,10 @@ function Coffee(props){
         <h3>Quantity: {props.quantity}</h3>
         <p>{props.description}</p>
       </div>
-      <button onClick={() => props.whenSellCoffeeClicked(props.id)} disabled={!props.quantity}>
-        {(props.quantity) ? 'Sell Coffee' : 'Sold Out'}
-      </button>
+      <div>
+        <button onClick={() => props.whenSellCoffeeClicked(props.id)}>Sell
+        </button>
+      </div>
     </React.Fragment>
   ); 
 }
@@ -22,9 +23,10 @@ Coffee.propTypes = {
   quantity: PropTypes.number, 
   roast: PropTypes.string, 
   price: PropTypes.number,
-  description: PropTypes, 
+  description: PropTypes.string, 
   id: PropTypes.string, 
-  whenCoffeeClicked: PropTypes.func
+  whenCoffeeClicked: PropTypes.func, 
+  whenSellCoffeeClicked: PropTypes.func
 }; 
 
 export default Coffee; 
